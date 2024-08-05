@@ -8,12 +8,12 @@ public class Main {
 
 
     public static void main(String[] args) {
-
-        balance = validateAmount(balance, getAmount());
+     balance = getBalance();
+      balance = validateAmount(balance, getAmount());
     }
 
     private static double getBalance() {
-        return 1000.00; // Наявні кошти на рахунку
+        return 1000.00;
     }
 
     private static double getAmount() {
@@ -23,9 +23,10 @@ public class Main {
         return scanner.nextDouble();
     }
 
-    // Метод валідації наявних коштів
-    private static void validateAmount(double balance, double withdrawal) {
+
+    private static double validateAmount(double balance, double withdrawal) {
         if (withdrawal > balance) {
+
             try {
                 throw new FundsException("Insufficient funds!");
             } catch (FundsException ex) {
@@ -35,11 +36,10 @@ public class Main {
             balance = getBalance(balance, withdrawal);
             System.out.printf("Funds are OK. Purchase paid." +
                     "%nBalance is USD %.2f", balance);
-        }
+        }return balance;
     }
 
-    // Метод розрахунку наявних коштів на рахунку
-    // після зняття певної суми коштів
+
     private static double getBalance(double balance, double withdrawal) {
         return balance - withdrawal;
     }
